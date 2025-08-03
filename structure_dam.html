@@ -72,7 +72,7 @@
   </style>
 </head>
 <body>
-  <h2 style="text-align:center; font-family:sans-serif; color:#0f172a;">Animasi Ledakan & Shock Wave ke Bangunan (Auto Rewind)</h2>
+  <h2 style="text-align:center; font-family:sans-serif; color:#0f172a;">Explosion and Shock Wave Animation on Buildings</h2>
   <div id="scene">
     <div id="explosion"></div>
     <div id="ground"></div>
@@ -83,7 +83,7 @@
   <div style="text-align:center; margin-top:20px;">
     <button onclick="startBlast()" id="startBtn" style="padding:8px 22px;font-size:1em; border-radius:6px;">▶️ Mulai Ledakan</button>
     <button onclick="resetScene(true)" style="padding:8px 22px;font-size:1em; border-radius:6px;">⏹️ Reset</button>
-    <div style="margin-top:12px; font-size:1.1em;" id="caption">Klik "Mulai Ledakan" untuk melihat efek gelombang ke bangunan.<br>Auto rewind aktif!</div>
+    <div style="margin-top:12px; font-size:1.1em;" id="caption">Click "Start Explosion" An animated simulation designed to observe the effects of shock wave propagation on building structures.<br>Design by Virda NL</div>
   </div>
   <script>
     // Helper tambah window
@@ -190,7 +190,7 @@
 
     function resetScene(full=true) {
       if (waveElem) { waveElem.remove(); waveElem = null;}
-      document.getElementById('caption').innerHTML = "Klik \"Mulai Ledakan\" untuk melihat efek gelombang ke bangunan.<br>Auto rewind aktif!";
+      document.getElementById('caption').innerHTML = "Click "Start Explosion" An animated simulation designed to observe the effects of shock wave propagation on building structures.<br>Design by Virda NL";
       // Reset bangunan
       let bSmall = document.getElementById('bSmall');
       bSmall.className = 'building small';
