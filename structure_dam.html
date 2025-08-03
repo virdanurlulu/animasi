@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Animated Simulation of Explosion and Shock Wave Effects on a Building Structure</title>
+  <title>Explosion Shock Wave Impact on Buildings (Auto Rewind)</title>
   <style>
     body { background: #f8fafc; margin: 0; padding: 0; }
     #scene {
@@ -69,10 +69,21 @@
       font-weight: 600;
     }
     .show-label { opacity: 1; }
+    .credit {
+      text-align: center;
+      font-size: 0.98em;
+      color: #64748b;
+      margin-top: 8px;
+      font-style: italic;
+      letter-spacing: 0.03em;
+      user-select: none;
+    }
   </style>
 </head>
 <body>
-  <h2 style="text-align:center; font-family:sans-serif; color:#0f172a;">Explosion and Shock Wave Animation on Buildings</h2>
+  <h2 style="text-align:center; font-family:sans-serif; color:#0f172a; margin-bottom:10px;">
+    Explosion Shock Wave Impact on Buildings (Auto Rewind)
+  </h2>
   <div id="scene">
     <div id="explosion"></div>
     <div id="ground"></div>
@@ -81,9 +92,14 @@
     <div class="building tall" id="bTall"><div class="effect-label" id="lTall"></div></div>
   </div>
   <div style="text-align:center; margin-top:20px;">
-    <button onclick="startBlast()" id="startBtn" style="padding:8px 22px;font-size:1em; border-radius:6px;">▶️ Mulai Ledakan</button>
+    <button onclick="startBlast()" id="startBtn" style="padding:8px 22px;font-size:1em; border-radius:6px;">▶️ Start Simulation</button>
     <button onclick="resetScene(true)" style="padding:8px 22px;font-size:1em; border-radius:6px;">⏹️ Reset</button>
-    <div style="margin-top:12px; font-size:1.1em;" id="caption">Click "Start Explosion" An animated simulation designed to observe the effects of shock wave propagation on building structures.<br>Design by Virda NL</div>
+    <div style="margin-top:12px; font-size:1.1em;" id="caption">
+      This animation demonstrates the propagation of an explosion-generated shock wave impacting three different building types sequentially. 
+      The shock wave causes 50% structural damage to the small building, 80% structural damage to the medium building, and severe window and frame damage to the upper section of the tall building, while its main structure remains intact. 
+      The simulation will automatically rewind and repeat.<br>Auto rewind is enabled.
+    </div>
+    <div class="credit">Design by Virda NL - https://www.virdapark.my.id/</div>
   </div>
   <script>
     // Helper tambah window
@@ -123,7 +139,10 @@
 
     function blastSequence() {
       resetScene(false); // reset tanpa matikan autoLoop
-      document.getElementById('caption').innerHTML = "The shock wave propagates through the medium, causing progressive structural failure of buildings in sequence.<br> Auto rewind active! <br> Design by Virda NL";
+      document.getElementById('caption').innerHTML = 
+        'This animation demonstrates the propagation of an explosion-generated shock wave impacting three different building types sequentially. ' +
+        'The shock wave causes 50% structural damage to the small building, 80% structural damage to the medium building, and severe window and frame damage to the upper section of the tall building, while its main structure remains intact. ' +
+        'The simulation will automatically rewind and repeat.<br>Auto rewind is enabled.';
       // Buat shockwave animasi lingkaran besar (melewati semua)
       waveElem = document.createElement('div');
       waveElem.className = 'wave';
@@ -133,14 +152,14 @@
       timers.push(setTimeout(() => {
         let b = document.getElementById('bSmall');
         b.classList.add('hit', 'destroy50');
-        showLabel('lSmall', "50% Kerusakan Struktur");
+        showLabel('lSmall', "50% Structural Damage");
       }, 700));
 
       // Bangunan sedang (kerusakan 80%)
       timers.push(setTimeout(() => {
         let b = document.getElementById('bMedium');
         b.classList.add('hit', 'destroy80');
-        showLabel('lMedium', "80% Kerusakan Struktur");
+        showLabel('lMedium', "80% Structural Damage");
       }, 1600));
 
       // Bangunan tinggi (20 jendela paling atas pecah & frame rusak)
@@ -148,7 +167,7 @@
         let b = document.getElementById('bTall');
         b.classList.add('hit');
         pecahkanKacaTinggi();
-        showLabel('lTall', "Kerusakan Kaca & Frame Atas");
+        showLabel('lTall', "Window and Frame Damage (Upper Levels)");
       }, 2300));
 
       // Hapus shockwave dan auto rewind
@@ -190,7 +209,10 @@
 
     function resetScene(full=true) {
       if (waveElem) { waveElem.remove(); waveElem = null;}
-      document.getElementById('caption').innerHTML = "Click "Start Explosion" An animated simulation designed to observe the effects of shock wave propagation on building structures.<br>Design by Virda NL";
+      document.getElementById('caption').innerHTML = 
+        'This animation demonstrates the propagation of an explosion-generated shock wave impacting three different building types sequentially. ' +
+        'The shock wave causes 50% structural damage to the small building, 80% structural damage to the medium building, and severe window and frame damage to the upper section of the tall building, while its main structure remains intact. ' +
+        'The simulation will automatically rewind and repeat.<br>Auto rewind is enabled.';
       // Reset bangunan
       let bSmall = document.getElementById('bSmall');
       bSmall.className = 'building small';
